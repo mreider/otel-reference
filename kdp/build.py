@@ -135,6 +135,7 @@ def build_epub(soup):
     copy_ch.content = f"""<div class="copyright-page">
   <p>{TITLE}</p>
   <p>&copy; {YEAR} {AUTHOR}. All rights reserved.</p>
+  <p style="margin-top:1.5em;">OpenTelemetry is a CNCF incubating project. CNCF and the CNCF logo design are registered trademarks of the Cloud Native Computing Foundation. This book is not affiliated with or sponsored by the Cloud Native Computing Foundation.</p>
 </div>"""
     copy_ch.add_item(css)
     book.add_item(copy_ch)
@@ -280,6 +281,8 @@ def build_pdf(soup):
         el.decompose()
     for el in soup.find_all("svg", class_="squid"):
         el.decompose()
+    for el in soup.find_all("div", class_="downloads"):
+        el.decompose()
     for el in soup.find_all("img", class_="logo"):
         el.decompose()
     for el in soup.find_all("footer"):
@@ -346,6 +349,7 @@ def build_pdf(soup):
   <div class="copyright-page">
     <p>{TITLE}</p>
     <p>&copy; {YEAR} {AUTHOR}. All rights reserved.</p>
+    <p class="cp-note">OpenTelemetry is a CNCF incubating project. CNCF and the CNCF logo design are registered trademarks of the Cloud Native Computing Foundation. This book is not affiliated with or sponsored by the Cloud Native Computing Foundation.</p>
   </div>
 
   <div class="toc-page">
