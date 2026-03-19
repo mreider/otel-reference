@@ -25,10 +25,22 @@ style.css     # Print-inspired typography
 CNAME         # Custom domain for GitHub Pages
 ```
 
+## Adding New Content
+
+When the user proposes a new concept, **do not just write it**. First, have a Q&A conversation covering:
+
+1. **What is the concept?** Clarify the idea and make sure we agree on scope. What does it teach? What question does it answer?
+2. **Where does it go?** Which existing entries does it depend on? Which entries depend on ideas it would introduce? Find the right slot in the sequence.
+3. **Does it need to be broken up?** If the concept requires understanding two new ideas at once, it must be split into separate entries — always N, never N+1.
+4. **What breaks?** Does inserting it require refactoring existing entries? Do later entries now need to reference it? Does the TOC, numbering, or phase structure need updating?
+5. **What example or illustration does it need?** Every entry gets a concrete `.ex` block, SVG illustration, or definition list.
+
+Only after alignment on all five questions should we write the entry and update the primer.
+
 ## Important Reminders
 
 - **Git identity**: Always use mreider@gmail.com for all git operations
 - **One page**: Everything lives in index.html. Do not split into multiple pages.
 - **No JavaScript**: This is a static document. No interactivity, no animations.
-- **Concept order matters**: The 28 entries are carefully sequenced. Do not reorder without verifying the constructivist dependency chain — each entry may only reference concepts introduced before it.
+- **Concept order matters**: The entries are carefully sequenced. Do not reorder without verifying the constructivist dependency chain — each entry may only reference concepts introduced before it.
 - **No em dashes**: Use en dashes (`&ndash;`) with spaces around them, never em dashes (`&mdash;`). This applies to all content in index.html.
