@@ -473,19 +473,19 @@ after:   14:32:01 ERROR "Connection pool exhausted"
     <div class="entry-head"><span class="entry-num">25.</span> Exemplars</div>
     <p>Metrics aggregate &ndash; that is their strength. A histogram can show that some requests took over one second, but not which ones.</p>
     <p>An <span class="term">exemplar</span> is a link from a metric data point to the specific trace that produced it. The metric says "something was slow." The exemplar says "here is one of the slow requests &ndash; follow this trace ID to see exactly what happened."</p>
-    <svg class="ill" width="260" height="72" viewBox="0 0 260 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="18" y1="8" x2="18" y2="52" stroke="#777" stroke-width="0.4"/>
-      <line x1="18" y1="52" x2="108" y2="52" stroke="#777" stroke-width="0.4"/>
-      <rect x="24" y="38" width="12" height="14" stroke="#444" stroke-width="0.5" fill="none" rx="0.3"/>
-      <rect x="40" y="22" width="12" height="30" stroke="#444" stroke-width="0.5" fill="none" rx="0.3"/>
-      <rect x="56" y="12" width="12" height="40" stroke="#444" stroke-width="0.5" fill="none" rx="0.3"/>
-      <rect x="72" y="28" width="12" height="24" stroke="#444" stroke-width="0.5" fill="none" rx="0.3"/>
-      <rect x="88" y="40" width="12" height="12" stroke="#444" stroke-width="0.5" fill="none" rx="0.3"/>
-      <path d="M68 12 Q105 2 148 16" stroke="#333" stroke-width="0.5" stroke-dasharray="3 2" fill="none" stroke-linecap="round"/>
-      <text x="112" y="8" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="6.5" fill="#555" font-style="italic">exemplar</text>
-      <rect x="148" y="12" width="98" height="10" rx="2" stroke="#333" stroke-width="0.6" fill="none"/>
-      <text x="197" y="20" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="6.5" fill="#333" font-style="italic">trace 4bf92f...</text>
-      <text x="62" y="66" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="7" fill="#444" font-style="italic">metric</text>
+    <svg class="ill" width="300" height="100" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="24" y1="12" x2="24" y2="72" stroke="#777" stroke-width="0.5"/>
+      <line x1="24" y1="72" x2="130" y2="72" stroke="#777" stroke-width="0.5"/>
+      <rect x="32" y="52" width="16" height="20" stroke="#444" stroke-width="0.6" fill="none" rx="0.5"/>
+      <rect x="54" y="30" width="16" height="42" stroke="#444" stroke-width="0.6" fill="none" rx="0.5"/>
+      <rect x="76" y="16" width="16" height="56" stroke="#444" stroke-width="0.6" fill="none" rx="0.5"/>
+      <rect x="98" y="38" width="16" height="34" stroke="#444" stroke-width="0.6" fill="none" rx="0.5"/>
+      <rect x="120" y="56" width="16" height="16" stroke="#444" stroke-width="0.6" fill="none" rx="0.5"/>
+      <path d="M92 16 Q140 4 185 22" stroke="#333" stroke-width="0.6" stroke-dasharray="4 2" fill="none" stroke-linecap="round"/>
+      <text x="142" y="10" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="9" fill="#555" font-style="italic">exemplar</text>
+      <rect x="185" y="16" width="100" height="16" rx="3" stroke="#333" stroke-width="0.7" fill="none"/>
+      <text x="235" y="28" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="9" fill="#333" font-style="italic">trace 4bf92f...</text>
+      <text x="76" y="90" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="10" fill="#444" font-style="italic">metric</text>
     </svg>
   </div>
 
