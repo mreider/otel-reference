@@ -41,6 +41,13 @@ h1 {
   margin: 0 auto 1.2em;
 }
 
+.ill {
+  display: block;
+  margin: 2.5em auto 1.8em;
+  width: 85%;
+  height: auto;
+}
+
 /* TOC */
 .toc {
   border-top: 0.5pt solid #1a1a1a;
@@ -73,7 +80,7 @@ h1 {
 .toc a {
   color: inherit;
   text-decoration: none;
-  font-size: 0.85em;
+  font-size: 0.95em;
 }
 
 .toc a:hover {
@@ -92,13 +99,13 @@ h1 {
 /* phase headings */
 .phase {
   font-variant: small-caps;
-  letter-spacing: 0.12em;
-  font-size: 0.8em;
-  color: #888;
+  letter-spacing: 0.14em;
+  font-size: 1.25em;
+  color: #555;
   text-align: center;
-  margin: 2.5em 0 1.5em;
-  border-bottom: 0.2pt solid #ddd;
-  padding-bottom: 0.4em;
+  margin: 3.5em 0 1.5em;
+  border-bottom: 0.5pt solid #ccc;
+  padding-bottom: 0.5em;
 }
 
 /* concept entries */
@@ -121,11 +128,7 @@ h1 {
 }
 
 .entry p {
-  margin: 0;
-  text-indent: 1em;
-}
-
-.entry p:first-of-type {
+  margin: 0.5em 0 0;
   text-indent: 0;
 }
 
@@ -153,25 +156,33 @@ h1 {
 
 /* definition pairs */
 .defs {
-  margin: 0.5em 0;
+  margin: 1.2em 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: 8em 1fr;
+  border-top: 0.5pt solid #e5e5e5;
+  border-bottom: 0.5pt solid #e5e5e5;
 }
 
 .defs dt {
   font-weight: 600;
-  float: left;
-  clear: left;
-  width: 9em;
-  padding: 0.15em 0;
+  padding: 0.3em 0.5em 0.3em 0;
+  border-bottom: 0.3pt solid #eee;
 }
 
 .defs dd {
-  margin-left: 9.5em;
-  padding: 0.15em 0;
-  border-bottom: 0.2pt solid #eee;
+  margin: 0;
+  padding: 0.3em 0 0.3em 0.5em;
+  border-bottom: 0.3pt solid #eee;
 }
 
-.defs dd:last-child {
+.defs dt:nth-of-type(even),
+.defs dd:nth-of-type(even) {
+  background: #faf8f5;
+}
+
+.defs dt:last-of-type,
+.defs dd:last-of-type {
   border-bottom: none;
 }
 

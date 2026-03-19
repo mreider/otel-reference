@@ -31,3 +31,4 @@ CNAME         # Custom domain for GitHub Pages
 - **One page**: Everything lives in index.html. Do not split into multiple pages.
 - **No JavaScript**: This is a static document. No interactivity, no animations.
 - **Concept order matters**: The 28 entries are carefully sequenced. Do not reorder without verifying the constructivist dependency chain — each entry may only reference concepts introduced before it.
+- **No em dashes**: Use en dashes (`&ndash;`) with spaces around them, never em dashes (`&mdash;`). This applies to all content in index.html.

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- Page edges (depth) -->
+  <path d="M56 4 L60 8 L60 64 L56 60" stroke="#ccc" stroke-width="0.5" fill="none"/>
+  <path d="M12 60 L16 64 L60 64 L56 60" stroke="#ccc" stroke-width="0.5" fill="none"/>
+  <line x1="57.3" y1="5.3" x2="57.3" y2="61.3" stroke="#ddd" stroke-width="0.3"/>
+  <line x1="58.6" y1="6.6" x2="58.6" y2="62.6" stroke="#e5e5e5" stroke-width="0.25"/>
+  <line x1="13.3" y1="61.3" x2="57.3" y2="61.3" stroke="#ddd" stroke-width="0.3"/>
+  <line x1="14.6" y1="62.6" x2="58.6" y2="62.6" stroke="#e5e5e5" stroke-width="0.25"/>
+  <!-- Front cover -->
+  <rect x="12" y="4" width="44" height="56" rx="1" stroke="#bbb" stroke-width="0.7" fill="white"/>
+  <!-- Spine -->
+  <line x1="17" y1="4" x2="17" y2="60" stroke="#bbb" stroke-width="0.5"/>
+  <!-- Decorative rule -->
+  <line x1="25" y1="20" x2="48" y2="20" stroke="#ccc" stroke-width="0.3"/>
+  <!-- "OTel" title -->
+  <text x="37" y="31" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#aaa" font-style="italic">OTel</text>
+  <!-- Decorative rule -->
+  <line x1="25" y1="35" x2="48" y2="35" stroke="#ccc" stroke-width="0.3"/>
+  <!-- Subtitle squiggles -->
+  <path d="M26 41 Q32 40 37 41 Q42 42 47 41" stroke="#d5d5d5" stroke-width="0.4" fill="none"/>
+  <path d="M28 45 Q34 44 38 45 Q42 46 45 45" stroke="#ddd" stroke-width="0.35" fill="none"/>
+</svg>

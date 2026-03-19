@@ -5,24 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OpenTelemetry Reference</title>
   <meta name="description" content="A progressive reference to OpenTelemetry concepts, building from first principles.">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <svg class="squid" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="28" cy="19" rx="11" ry="13" fill="none" stroke="#bbb" stroke-width="0.7"/>
-    <circle cx="24" cy="17.5" r="1.5" fill="#999"/>
-    <circle cx="32" cy="17.5" r="1.5" fill="#999"/>
-    <path d="M19 30 Q16 39 13 45" stroke="#aaa" stroke-width="0.8" stroke-linecap="round" fill="none"/>
-    <path d="M22 31 Q21 40 18 47" stroke="#bbb" stroke-width="0.8" stroke-linecap="round" fill="none"/>
-    <path d="M26 32 Q26 42 24 49" stroke="#aaa" stroke-width="0.8" stroke-linecap="round" fill="none"/>
-    <path d="M30 32 Q30 42 32 49" stroke="#bbb" stroke-width="0.8" stroke-linecap="round" fill="none"/>
-    <path d="M34 31 Q35 40 38 47" stroke="#aaa" stroke-width="0.8" stroke-linecap="round" fill="none"/>
-    <path d="M37 30 Q40 39 43 45" stroke="#bbb" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+  <svg class="squid" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Right page block -->
+    <path d="M56 4 L60 8 L60 64 L56 60" stroke="#ccc" stroke-width="0.5" fill="none"/>
+    <!-- Bottom page block -->
+    <path d="M12 60 L16 64 L60 64 L56 60" stroke="#ccc" stroke-width="0.5" fill="none"/>
+    <!-- Page lines (right) -->
+    <line x1="57.3" y1="5.3" x2="57.3" y2="61.3" stroke="#ddd" stroke-width="0.3"/>
+    <line x1="58.6" y1="6.6" x2="58.6" y2="62.6" stroke="#e5e5e5" stroke-width="0.25"/>
+    <!-- Page lines (bottom) -->
+    <line x1="13.3" y1="61.3" x2="57.3" y2="61.3" stroke="#ddd" stroke-width="0.3"/>
+    <line x1="14.6" y1="62.6" x2="58.6" y2="62.6" stroke="#e5e5e5" stroke-width="0.25"/>
+    <!-- Front cover -->
+    <rect x="12" y="4" width="44" height="56" rx="1" stroke="#bbb" stroke-width="0.7" fill="none"/>
+    <!-- Spine -->
+    <line x1="17" y1="4" x2="17" y2="60" stroke="#bbb" stroke-width="0.5"/>
+    <!-- Decorative rule -->
+    <line x1="25" y1="20" x2="48" y2="20" stroke="#ccc" stroke-width="0.3"/>
+    <!-- "OTel" title -->
+    <text x="37" y="31" text-anchor="middle" font-family="'Crimson Text', serif" font-size="12" fill="#aaa" font-style="italic">OTel</text>
+    <!-- Decorative rule -->
+    <line x1="25" y1="35" x2="48" y2="35" stroke="#ccc" stroke-width="0.3"/>
+    <!-- Subtitle squiggles -->
+    <path d="M26 41 Q32 40 37 41 Q42 42 47 41" stroke="#d5d5d5" stroke-width="0.4" fill="none"/>
+    <path d="M28 45 Q34 44 38 45 Q42 46 45 45" stroke="#ddd" stroke-width="0.35" fill="none"/>
   </svg>
 
   <h1>OpenTelemetry Reference</h1>
-  <p class="subtitle">28 concepts, each building on the last</p>
+  <p class="subtitle">Each concept building on the last</p>
 
   <nav class="toc">
     <div class="toc-label">Contents</div>
@@ -66,6 +83,9 @@
     <div class="entry-head"><span class="entry-num">1.</span> Telemetry</div>
     <p>A running program can do one of two things when something goes wrong: fail silently, or tell you what happened. Programs that tell you what happened do so by emitting data about their own behavior. This data is called <span class="term">telemetry</span>.</p>
     <p>Without telemetry, a service is a closed box. You know it received a request and you know what it returned, but you cannot see what happened inside. With telemetry, the service describes its own internal state as it runs.</p>
+    <div class="ex">14:32:01  checkout  received request    /checkout
+14:32:01  checkout  queried database    12ms
+14:32:02  checkout  sent response       201 Created  387ms</div>
   </div>
 
   <div class="entry" id="signals">
@@ -86,6 +106,9 @@
     <div class="entry-head"><span class="entry-num">3.</span> Metrics</div>
     <p>Imagine ten thousand events per second scrolling past. No one can read them all. A <span class="term">metric</span> solves this by counting, averaging, or summarizing those events into a single number over a period of time.</p>
     <p>Ten thousand requests become "450 per second." A thousand response times become "p99 latency is 320ms." Metrics turn overwhelming volume into readable patterns: is traffic growing? Is latency spiking? Are errors increasing?</p>
+    <div class="ex">10,241 requests    →  "422 req/s"
+ 9,712 durations     →  "p99 latency: 320ms"
+   238 failures      →  "error rate: 2.3%"</div>
   </div>
 
   <div class="entry" id="metric-types">
@@ -99,6 +122,24 @@
       <dt>Histogram</dt>
       <dd>A distribution of values across ranges. How many requests took 0&ndash;100ms? How many took 100&ndash;500ms? A histogram reveals whether most requests are fast with a few slow outliers, or whether everything is uniformly slow.</dd>
     </dl>
+    <svg class="ill" width="300" height="78" viewBox="0 0 300 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="18" y1="10" x2="18" y2="52" stroke="#ddd" stroke-width="0.4"/>
+      <line x1="18" y1="52" x2="82" y2="52" stroke="#ddd" stroke-width="0.4"/>
+      <path d="M20 50 L32 50 L32 40 L44 40 L44 32 L56 32 L56 22 L68 22 L68 14 L80 14" stroke="#aaa" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="50" y="68" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#bbb" font-style="italic">counter</text>
+      <line x1="118" y1="10" x2="118" y2="52" stroke="#ddd" stroke-width="0.4"/>
+      <line x1="118" y1="52" x2="182" y2="52" stroke="#ddd" stroke-width="0.4"/>
+      <path d="M120 38 Q130 15 142 32 Q152 50 162 28 Q170 14 180 35" stroke="#aaa" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+      <text x="150" y="68" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#bbb" font-style="italic">gauge</text>
+      <line x1="218" y1="10" x2="218" y2="52" stroke="#ddd" stroke-width="0.4"/>
+      <line x1="218" y1="52" x2="282" y2="52" stroke="#ddd" stroke-width="0.4"/>
+      <rect x="223" y="42" width="8" height="10" stroke="#aaa" stroke-width="0.5" fill="none" rx="0.3"/>
+      <rect x="234" y="28" width="8" height="24" stroke="#aaa" stroke-width="0.5" fill="none" rx="0.3"/>
+      <rect x="245" y="16" width="8" height="36" stroke="#aaa" stroke-width="0.5" fill="none" rx="0.3"/>
+      <rect x="256" y="32" width="8" height="20" stroke="#aaa" stroke-width="0.5" fill="none" rx="0.3"/>
+      <rect x="267" y="42" width="8" height="10" stroke="#aaa" stroke-width="0.5" fill="none" rx="0.3"/>
+      <text x="250" y="68" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#bbb" font-style="italic">histogram</text>
+    </svg>
   </div>
 
   <div class="entry" id="traces">
@@ -116,12 +157,24 @@
     <div class="entry-head"><span class="entry-num">6.</span> Spans</div>
     <p>A trace is made of smaller pieces called <span class="term">spans</span>. Each span represents one operation: handling an HTTP request, querying a database, calling another service.</p>
     <p>Every span records a start time, a duration, and a status. Spans nest inside each other, forming a tree. The topmost span represents the entire request. Its children represent the steps within it. By reading the tree, you can see which operation took the longest and which one failed.</p>
+    <div class="ex">span:
+  name       = GET /api/orders
+  trace_id   = 4bf92f3577b34da6
+  span_id    = 00f067aa0ba902b7
+  parent_id  = a3ce929d0e0e4736
+  start      = 14:32:01.234
+  duration   = 200ms
+  status     = OK</div>
   </div>
 
   <div class="entry" id="logs">
     <div class="entry-head"><span class="entry-num">7.</span> Logs</div>
     <p>Metrics tell you <span class="it">that</span> something is wrong. Traces show you <span class="it">where</span>. Logs explain <span class="it">why</span>.</p>
     <p>A <span class="term">log record</span> captures a single event at a specific moment: an error message, a stack trace, the exact input value that caused a failure. Each record carries a timestamp, a severity level (info, warn, error), and a message body. Where metrics summarize and traces narrate, logs preserve the raw detail.</p>
+    <div class="ex">14:32:01 ERROR  checkout-svc
+  "Connection pool exhausted: max connections reached"
+  exception.type  = PostgresError
+  db.statement    = SELECT * FROM orders WHERE id = ?</div>
   </div>
 
   <!-- ——————————————————————————— -->
@@ -131,7 +184,12 @@
   <div class="entry" id="attributes">
     <div class="entry-head"><span class="entry-num">8.</span> Attributes</div>
     <p>A span that says "HTTP request, 200ms" is vague. A span that says "GET /api/orders, 200ms, status=500, user_id=42" is useful.</p>
-    <p>The difference is <span class="term">attributes</span>: key-value pairs attached to any signal. They provide the context that makes telemetry worth reading&mdash;the HTTP method, the endpoint, the response status, the customer tier. Attributes can be attached to spans, metrics, and logs alike.</p>
+    <p>The difference is <span class="term">attributes</span>: key-value pairs attached to any signal. They provide the context that makes telemetry worth reading &ndash; the HTTP method, the endpoint, the response status, the customer tier. Attributes can be attached to spans, metrics, and logs alike.</p>
+    <div class="ex">http.request.method  = GET
+http.route           = /api/orders
+http.response.status = 500
+user.id              = 42
+cart.item_count      = 3</div>
   </div>
 
   <div class="entry" id="resources">
@@ -147,7 +205,12 @@ host.name        = prod-checkout-7a3b</div>
   <div class="entry" id="semantic-conventions">
     <div class="entry-head"><span class="entry-num">10.</span> Semantic Conventions</div>
     <p>If one team names an attribute <span class="it">http.status</span> and another names the same thing <span class="it">response_code</span>, no single query can find both.</p>
-    <p><span class="term">Semantic conventions</span> are OpenTelemetry's shared naming rules. They define standard names for common concepts&mdash;<span class="it">http.request.method</span>, <span class="it">http.response.status_code</span>, <span class="it">db.system</span>&mdash;so that data from every team and every service can be queried in the same way.</p>
+    <p><span class="term">Semantic conventions</span> are OpenTelemetry's shared naming rules. They define standard names for common concepts &ndash; <span class="it">http.request.method</span>, <span class="it">http.response.status_code</span>, <span class="it">db.system</span> &ndash; so that data from every team and every service can be queried in the same way.</p>
+    <div class="ex">Team A:      http.status             = 200
+Team B:      response_code           = 200
+Team C:      statusCode              = 200
+
+Convention:  http.response.status_code = 200</div>
   </div>
 
   <!-- ——————————————————————————— -->
@@ -157,19 +220,41 @@ host.name        = prod-checkout-7a3b</div>
   <div class="entry" id="instrumentation">
     <div class="entry-head"><span class="entry-num">11.</span> Instrumentation</div>
     <p>Code does not produce telemetry on its own. <span class="term">Instrumentation</span> is the code that creates spans, records metrics, and emits logs.</p>
-    <p>OpenTelemetry offers two approaches. <span class="term">Automatic instrumentation</span> hooks into common libraries and frameworks&mdash;HTTP servers, database drivers, messaging clients&mdash;to produce telemetry without code changes. <span class="term">Manual instrumentation</span> uses the OpenTelemetry API directly, for custom business logic that libraries cannot cover.</p>
+    <p>OpenTelemetry offers two approaches. <span class="term">Automatic instrumentation</span> hooks into common libraries and frameworks &ndash; HTTP servers, database drivers, messaging clients &ndash; to produce telemetry without code changes. <span class="term">Manual instrumentation</span> uses the OpenTelemetry API directly, for custom business logic that libraries cannot cover.</p>
+    <div class="ex"># automatic: wraps known libraries, no code changes
+opentelemetry-instrument python app.py
+
+# manual: you create spans in your own code
+with tracer.start_as_current_span("process-payment"):
+    charge(card, amount)</div>
   </div>
 
   <div class="entry" id="exporters">
     <div class="entry-head"><span class="entry-num">12.</span> Exporters</div>
     <p>Instrumentation creates telemetry inside a running process. An <span class="term">exporter</span> sends it out.</p>
-    <p>The exporter serializes spans, metrics, and logs into a structured format and transmits them to a destination&mdash;a collector, a backend, or a file. It is the boundary between your application and the rest of the telemetry pipeline.</p>
+    <p>The exporter serializes spans, metrics, and logs into a structured format and transmits them to a destination &ndash; a collector, a backend, or a file. It is the boundary between your application and the rest of the telemetry pipeline.</p>
+    <div class="ex">your application
+  │  spans, metrics, logs
+  ↓
+exporter
+  │  serialize → OTLP
+  ↓
+collector or backend</div>
   </div>
 
   <div class="entry" id="otlp">
     <div class="entry-head"><span class="entry-num">13.</span> OTLP</div>
     <p>Exporters need a format to send data in. <span class="term">OTLP</span> (OpenTelemetry Protocol) is the standard wire format for all three signals.</p>
     <p>It can be carried over gRPC or HTTP, encoded as binary protobuf or JSON. Because it is a shared standard, any tool that speaks OTLP can receive telemetry from any application that speaks OTLP, regardless of programming language or vendor.</p>
+    <div class="ex">POST /v1/traces HTTP/1.1
+Content-Type: application/json
+
+{ "resourceSpans": [{
+    "resource": { "attributes": [
+      { "key": "service.name", "value": "checkout-svc" }
+    ]},
+    "scopeSpans": [{ "spans": [{ ... }] }]
+}]}</div>
   </div>
 
   <!-- ——————————————————————————— -->
@@ -180,6 +265,39 @@ host.name        = prod-checkout-7a3b</div>
     <div class="entry-head"><span class="entry-num">14.</span> The Collector</div>
     <p>Without a central hub, every service must send telemetry directly to every backend it needs to reach. Ten services and three backends means thirty connections to manage.</p>
     <p>The <span class="term">OpenTelemetry Collector</span> sits between services and backends. Services send telemetry to the Collector. The Collector processes it and forwards it to the right destinations. The number of connections drops from <span class="it">services &times; backends</span> to <span class="it">services + backends</span>.</p>
+    <svg class="ill" width="300" height="92" viewBox="0 0 300 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="25" cy="15" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="25" cy="42" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="25" cy="69" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="125" cy="15" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="125" cy="42" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="125" cy="69" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <line x1="31" y1="15" x2="119" y2="15" stroke="#ccc" stroke-width="0.4"/>
+      <line x1="31" y1="15" x2="119" y2="42" stroke="#ccc" stroke-width="0.4"/>
+      <line x1="31" y1="15" x2="119" y2="69" stroke="#ccc" stroke-width="0.4"/>
+      <line x1="31" y1="42" x2="119" y2="15" stroke="#ccc" stroke-width="0.4"/>
+      <line x1="31" y1="42" x2="119" y2="42" stroke="#ccc" stroke-width="0.4"/>
+      <line x1="31" y1="42" x2="119" y2="69" stroke="#ccc" stroke-width="0.4"/>
+      <line x1="31" y1="69" x2="119" y2="15" stroke="#ccc" stroke-width="0.4"/>
+      <line x1="31" y1="69" x2="119" y2="42" stroke="#ccc" stroke-width="0.4"/>
+      <line x1="31" y1="69" x2="119" y2="69" stroke="#ccc" stroke-width="0.4"/>
+      <text x="75" y="88" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="7" fill="#ccc" font-style="italic">without collector</text>
+      <line x1="150" y1="5" x2="150" y2="80" stroke="#e5e5e5" stroke-width="0.3"/>
+      <circle cx="180" cy="15" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="180" cy="42" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="180" cy="69" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <rect x="218" y="26" width="34" height="32" rx="3" stroke="#aaa" stroke-width="0.7" fill="none"/>
+      <circle cx="285" cy="15" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="285" cy="42" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <circle cx="285" cy="69" r="6" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <line x1="186" y1="15" x2="218" y2="34" stroke="#bbb" stroke-width="0.5"/>
+      <line x1="186" y1="42" x2="218" y2="42" stroke="#bbb" stroke-width="0.5"/>
+      <line x1="186" y1="69" x2="218" y2="50" stroke="#bbb" stroke-width="0.5"/>
+      <line x1="252" y1="34" x2="279" y2="15" stroke="#bbb" stroke-width="0.5"/>
+      <line x1="252" y1="42" x2="279" y2="42" stroke="#bbb" stroke-width="0.5"/>
+      <line x1="252" y1="50" x2="279" y2="69" stroke="#bbb" stroke-width="0.5"/>
+      <text x="230" y="88" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="7" fill="#ccc" font-style="italic">with collector</text>
+    </svg>
   </div>
 
   <div class="entry" id="pipelines">
@@ -189,11 +307,23 @@ host.name        = prod-checkout-7a3b</div>
       <dt>Receivers</dt>
       <dd>Accept incoming telemetry. A receiver might listen for OTLP, scrape Prometheus endpoints, or accept Jaeger spans.</dd>
       <dt>Processors</dt>
-      <dd>Transform telemetry in flight&mdash;batch it, filter it, enrich it, sample it.</dd>
+      <dd>Transform telemetry in flight &ndash; batch it, filter it, enrich it, sample it.</dd>
       <dt>Exporters</dt>
       <dd>Send the processed data to one or more backends.</dd>
     </dl>
     <p>Each signal type gets its own pipeline, so traces, metrics, and logs can be handled differently.</p>
+    <svg class="ill" width="280" height="40" viewBox="0 0 280 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="6" width="68" height="22" rx="2" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <rect x="106" y="6" width="68" height="22" rx="2" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <rect x="202" y="6" width="68" height="22" rx="2" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <text x="44" y="21" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#aaa" font-style="italic">receivers</text>
+      <text x="140" y="21" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#aaa" font-style="italic">processors</text>
+      <text x="236" y="21" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#aaa" font-style="italic">exporters</text>
+      <line x1="78" y1="17" x2="103" y2="17" stroke="#bbb" stroke-width="0.5"/>
+      <path d="M99 14 L104 17 L99 20" stroke="#bbb" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="174" y1="17" x2="199" y2="17" stroke="#bbb" stroke-width="0.5"/>
+      <path d="M195 14 L200 17 L195 20" stroke="#bbb" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 
   <!-- ——————————————————————————— -->
@@ -211,8 +341,12 @@ host.name        = prod-checkout-7a3b</div>
 
   <div class="entry" id="baggage">
     <div class="entry-head"><span class="entry-num">17.</span> Baggage</div>
-    <p>Trace context carries telemetry identity&mdash;the trace ID and span ID. <span class="term">Baggage</span> uses the same propagation mechanism to carry application data.</p>
+    <p>Trace context carries telemetry identity &ndash; the trace ID and span ID. <span class="term">Baggage</span> uses the same propagation mechanism to carry application data.</p>
     <p>A frontend service might set <span class="it">user.tier=premium</span> in baggage. Every downstream service receives it automatically, without extra database lookups or API calls. Baggage values can then be added as attributes to spans, making business context available throughout the request.</p>
+    <div class="ex">baggage: user.tier=premium,region=us-east-1
+
+frontend  →  api  →  orders  →  database
+  (set)     (read)   (read)     (read)</div>
     <p class="note">Baggage travels with every request. Keep values small and remember that all downstream services can read them.</p>
   </div>
 
@@ -234,13 +368,29 @@ host.name        = prod-checkout-7a3b</div>
   <div class="entry" id="events">
     <div class="entry-head"><span class="entry-num">19.</span> Events</div>
     <p>Sometimes you want to record that something happened inside a span without creating a child span for it. An <span class="term">event</span> is a lightweight, timestamped annotation attached to a span.</p>
-    <p>Each event has a name, a timestamp, and optional attributes. Events mark moments like a cache miss, a retry attempt, or a validation failure&mdash;things worth noting that do not need their own duration measurement.</p>
+    <p>Each event has a name, a timestamp, and optional attributes. Events mark moments like a cache miss, a retry attempt, or a validation failure &ndash; things worth noting that do not need their own duration measurement.</p>
+    <div class="ex">span: process-order  (340ms)
+  events:
+    t=28ms   cache.miss     key=inventory:42
+    t=155ms  retry          attempt=2
+    t=312ms  payment.ok     provider=stripe</div>
   </div>
 
   <div class="entry" id="span-links">
     <div class="entry-head"><span class="entry-num">20.</span> Span Links</div>
     <p>Spans within a trace are connected by parent-child relationships. But some connections cross traces entirely. A queue consumer processes a message that was produced in a different trace. A batch job aggregates work from many traces.</p>
     <p><span class="term">Span links</span> express these relationships. They say "this span is related to that span" without changing either trace's structure. The two traces remain independent, but the connection between them is recorded.</p>
+    <svg class="ill" width="280" height="68" viewBox="0 0 280 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="58" y="8" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="7" fill="#ccc" font-style="italic">trace A</text>
+      <rect x="8" y="12" width="100" height="8" rx="1.5" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <rect x="18" y="26" width="70" height="8" rx="1.5" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <rect x="28" y="40" width="45" height="8" rx="1.5" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <text x="222" y="8" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="7" fill="#ccc" font-style="italic">trace B</text>
+      <rect x="172" y="12" width="100" height="8" rx="1.5" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <rect x="182" y="26" width="70" height="8" rx="1.5" stroke="#bbb" stroke-width="0.6" fill="none"/>
+      <path d="M50 48 Q140 68 215 30" stroke="#aaa" stroke-width="0.6" stroke-dasharray="3 2" fill="none" stroke-linecap="round"/>
+      <text x="140" y="64" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="7" fill="#bbb" font-style="italic">link</text>
+    </svg>
   </div>
 
   <!-- ——————————————————————————— -->
@@ -250,25 +400,63 @@ host.name        = prod-checkout-7a3b</div>
   <div class="entry" id="correlation">
     <div class="entry-head"><span class="entry-num">21.</span> Correlation</div>
     <p>Each signal answers its own question. <span class="term">Correlation</span> is the practice of connecting them so you can move between questions in a single investigation.</p>
-    <p>The trace ID is the shared thread. A metric can reference a trace ID through an exemplar. A log record can carry the trace ID and span ID of the operation that produced it. A span already has its trace ID. With this shared identifier, you can navigate from an alert to a request to an error message&mdash;across all three signals.</p>
+    <p>The trace ID is the shared thread. A metric can reference a trace ID through an exemplar. A log record can carry the trace ID and span ID of the operation that produced it. A span already has its trace ID. With this shared identifier, you can navigate from an alert to a request to an error message &ndash; across all three signals.</p>
+    <div class="ex">metric:  error_rate = 5.2%            ─┐
+trace:   checkout → orders → db       ─┤── trace_id = 4bf92f...
+log:     "pool exhausted"             ─┘</div>
   </div>
 
   <div class="entry" id="log-correlation">
     <div class="entry-head"><span class="entry-num">22.</span> Log Correlation</div>
     <p>Correlation between logs and traces can be automatic. An OpenTelemetry <span class="term">log appender</span> injects the active trace ID and span ID into every log record emitted during a traced operation.</p>
     <p>Once injected, every log line is navigable: find a log, jump to its trace. View a span, see every log it produced. The signals stop being separate databases and become one connected record.</p>
+    <div class="ex">before:  14:32:01 ERROR "Connection pool exhausted"
+
+after:   14:32:01 ERROR "Connection pool exhausted"
+           trace_id = 4bf92f3577b34da6
+           span_id  = 00f067aa0ba902b7</div>
   </div>
 
   <div class="entry" id="exemplars">
     <div class="entry-head"><span class="entry-num">23.</span> Exemplars</div>
-    <p>Metrics aggregate&mdash;that is their strength. A histogram can show that some requests took over one second, but not which ones.</p>
-    <p>An <span class="term">exemplar</span> is a link from a metric data point to the specific trace that produced it. The metric says "something was slow." The exemplar says "here is one of the slow requests&mdash;follow this trace ID to see exactly what happened."</p>
+    <p>Metrics aggregate &ndash; that is their strength. A histogram can show that some requests took over one second, but not which ones.</p>
+    <p>An <span class="term">exemplar</span> is a link from a metric data point to the specific trace that produced it. The metric says "something was slow." The exemplar says "here is one of the slow requests &ndash; follow this trace ID to see exactly what happened."</p>
+    <svg class="ill" width="260" height="72" viewBox="0 0 260 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="18" y1="8" x2="18" y2="52" stroke="#ddd" stroke-width="0.4"/>
+      <line x1="18" y1="52" x2="108" y2="52" stroke="#ddd" stroke-width="0.4"/>
+      <rect x="24" y="38" width="12" height="14" stroke="#bbb" stroke-width="0.5" fill="none" rx="0.3"/>
+      <rect x="40" y="22" width="12" height="30" stroke="#bbb" stroke-width="0.5" fill="none" rx="0.3"/>
+      <rect x="56" y="12" width="12" height="40" stroke="#bbb" stroke-width="0.5" fill="none" rx="0.3"/>
+      <rect x="72" y="28" width="12" height="24" stroke="#bbb" stroke-width="0.5" fill="none" rx="0.3"/>
+      <rect x="88" y="40" width="12" height="12" stroke="#bbb" stroke-width="0.5" fill="none" rx="0.3"/>
+      <path d="M68 12 Q105 2 148 16" stroke="#aaa" stroke-width="0.5" stroke-dasharray="3 2" fill="none" stroke-linecap="round"/>
+      <text x="112" y="8" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="6.5" fill="#ccc" font-style="italic">exemplar</text>
+      <rect x="148" y="12" width="98" height="10" rx="2" stroke="#aaa" stroke-width="0.6" fill="none"/>
+      <text x="197" y="20" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="6.5" fill="#aaa" font-style="italic">trace 4bf92f...</text>
+      <text x="62" y="66" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="7" fill="#bbb" font-style="italic">metric</text>
+    </svg>
   </div>
 
   <div class="entry" id="service-maps">
     <div class="entry-head"><span class="entry-num">24.</span> Service Maps</div>
     <p>Nobody maintains an architecture diagram by hand. The traces maintain it for you.</p>
     <p>Every span records which service made a call and which service received it. Analyze enough traces and you get a live <span class="term">service map</span>: a topology of your system showing which services exist, how they connect, and where the dependencies run. It is always current because it is drawn from real traffic.</p>
+    <svg class="ill" width="240" height="105" viewBox="0 0 240 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="28" r="14" stroke="#bbb" stroke-width="0.7" fill="none"/>
+      <circle cx="120" cy="28" r="14" stroke="#bbb" stroke-width="0.7" fill="none"/>
+      <circle cx="200" cy="28" r="14" stroke="#bbb" stroke-width="0.7" fill="none"/>
+      <circle cx="80" cy="82" r="14" stroke="#bbb" stroke-width="0.7" fill="none"/>
+      <circle cx="160" cy="82" r="14" stroke="#bbb" stroke-width="0.7" fill="none"/>
+      <text x="40" y="31" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#aaa" font-style="italic">web</text>
+      <text x="120" y="31" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#aaa" font-style="italic">api</text>
+      <text x="200" y="31" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#aaa" font-style="italic">db</text>
+      <text x="80" y="85" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#aaa" font-style="italic">auth</text>
+      <text x="160" y="85" text-anchor="middle" font-family="'Crimson Text', Georgia, serif" font-size="8" fill="#aaa" font-style="italic">cache</text>
+      <line x1="54" y1="28" x2="106" y2="28" stroke="#ccc" stroke-width="0.5"/>
+      <line x1="134" y1="28" x2="186" y2="28" stroke="#ccc" stroke-width="0.5"/>
+      <line x1="112" y1="40" x2="88" y2="70" stroke="#ccc" stroke-width="0.5"/>
+      <line x1="128" y1="40" x2="152" y2="70" stroke="#ccc" stroke-width="0.5"/>
+    </svg>
   </div>
 
   <!-- ——————————————————————————— -->
@@ -278,7 +466,13 @@ host.name        = prod-checkout-7a3b</div>
   <div class="entry" id="resource-detectors">
     <div class="entry-head"><span class="entry-num">25.</span> Resource Detectors</div>
     <p><span class="term">Resource detectors</span> run at startup and automatically discover the attributes that describe the environment: host name, cloud provider, Kubernetes namespace, OS type, container ID.</p>
-    <p>The only resource attribute that teams typically set by hand is <span class="it">service.name</span>. Everything else&mdash;where the code is running, on what hardware, in which region&mdash;can be detected from the runtime environment.</p>
+    <p>The only resource attribute that teams typically set by hand is <span class="it">service.name</span>. Everything else &ndash; where the code is running, on what hardware, in which region &ndash; can be detected from the runtime environment.</p>
+    <div class="ex">service.name   = checkout-svc         ← set by you
+cloud.provider = aws                  ← detected
+cloud.region   = us-east-1            ← detected
+k8s.namespace  = production           ← detected
+host.type      = m5.xlarge            ← detected
+container.id   = a1b2c3d4e5f6         ← detected</div>
   </div>
 
   <div class="entry" id="collector-transforms">
@@ -299,14 +493,27 @@ host.name        = prod-checkout-7a3b</div>
   <div class="entry" id="full-picture">
     <div class="entry-head"><span class="entry-num">27.</span> The Full Picture</div>
     <p>Real incidents require all three signals working together.</p>
-    <p>A metric triggers the alert: error rate spiked at 14:32. A trace narrows the scope: the payment service is timing out on calls to the database. A log explains why: "connection pool exhausted&mdash;max connections reached."</p>
+    <p>A metric triggers the alert: error rate spiked at 14:32. A trace narrows the scope: the payment service is timing out on calls to the database. A log explains why: "connection pool exhausted &ndash; max connections reached."</p>
     <p>No single signal is sufficient. Metrics establish <span class="it">when</span> and <span class="it">what</span>. Traces pinpoint <span class="it">where</span>. Logs reveal <span class="it">why</span>. Correlation lets you move between them. Together, they reach root cause.</p>
+    <div class="ex">1. metric    error_rate > 5%     alert fires at 14:32
+       ↓
+2. trace     checkout → payment → db    payment: 3200ms timeout
+       ↓
+3. log       "connection pool exhausted: max connections reached"
+       ↓
+   root cause: database connection limit needs increasing</div>
   </div>
 
   <div class="entry" id="profiling">
     <div class="entry-head"><span class="entry-num">28.</span> Profiling</div>
-    <p>Traces show where time is spent across services. <span class="term">Profiling</span> shows where time is spent inside a single service&mdash;at the function level&mdash;by capturing the actual stack frames executing on the CPU.</p>
+    <p>Traces show where time is spent across services. <span class="term">Profiling</span> shows where time is spent inside a single service &ndash; at the function level &ndash; by capturing the actual stack frames executing on the CPU.</p>
     <p>OpenTelemetry's profiling signal links profiles to traces through span context. A slow span does not just tell you the operation took 700ms; it connects to a flamegraph showing which functions consumed that time.</p>
+    <div class="ex">processRequest ─────────────────────── 700ms ──────
+├─ validateInput ── 20ms ──┤
+├─ queryDatabase ──────────────── 580ms ──────────┤
+│  ├─ getConnection ──── 490ms ──────────┤  ← slow
+│  └─ executeSQL ── 90ms ──┤
+└─ formatResponse ── 15ms ──┤</div>
     <p class="note">Profiling is an emerging signal in OpenTelemetry. The specification is under active development.</p>
   </div>
 
