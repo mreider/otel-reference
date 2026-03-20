@@ -100,7 +100,7 @@
       <dt>Gauge</dt>
       <dd>A value that goes up and down. Current memory usage, active connections, queue depth. A snapshot of the present moment.</dd>
       <dt>Histogram</dt>
-      <dd>A distribution of values sorted into ranges called buckets. How many requests took 0&ndash;100ms? How many took 100&ndash;500ms? A histogram is what makes percentiles possible &ndash; by counting how many values land in each bucket, you can calculate the p50, p95, or p99.</dd>
+      <dd>A distribution of values sorted into ranges called buckets. How many requests took 0&ndash;100ms? How many took 100&ndash;500ms? A counter or gauge reduces many observations to a single number. A histogram preserves the shape of the data &ndash; whether values cluster tightly or spread into a long tail. That shape is what makes percentiles possible: by counting how many values land in each bucket, you can calculate the p50, p95, or p99.</dd>
     </dl>
     <svg class="ill" width="300" height="78" viewBox="0 0 300 78" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="18" y1="10" x2="18" y2="52" stroke="#777" stroke-width="0.4"/>
@@ -124,7 +124,8 @@
 
   <div class="entry" id="outliers">
     <div class="entry-head"><span class="entry-num">5.</span> Outliers</div>
-    <p>An average can hide problems. If 95 requests take 50ms and 5 take 3,000ms, the average is 197ms &ndash; a number that describes nobody's actual experience. The fast majority masks the slow few.</p>
+    <p>A histogram does not just summarize &ndash; it preserves enough detail to answer different questions about your traffic. One of the most important: are some requests much slower than the rest?</p>
+    <p>An average cannot answer that. If 95 requests take 50ms and 5 take 3,000ms, the average is 197ms &ndash; a number that describes nobody's actual experience. The fast majority masks the slow few.</p>
     <p><span class="term">Outliers</span> are those slow few. Percentiles expose them where averages cannot. The p99 separates the worst 1% from the rest. Here, most requests cluster fast and the tail is short &ndash; nothing unusual:</p>
     <svg class="ill" width="320" height="100" viewBox="0 0 320 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- axes -->
@@ -491,7 +492,7 @@ Content-Type: application/json
   <div class="entry" id="is-it-all-open">
     <div class="entry-head"><span class="entry-num">15.</span> Is It All Open?</div>
     <p>OTLP and semantic conventions mean your instrumentation is portable. You can switch backends without changing your application code. But <span class="it">instrumentation</span> is only one layer.</p>
-    <p>There is no open standard for dashboards, alert rules, or SLO definitions. An enterprise with 4,000 dashboards in one platform cannot export them to another. The telemetry data is portable. The experience built on top of it is not.</p>
+    <p>Open projects exist for dashboards (Perses), alert rules (PromQL), and SLO definitions (OpenSLO), but none has reached the level of cross-vendor adoption that OTLP has for telemetry data. In practice, an enterprise with 4,000 dashboards in one platform cannot move them to another. The telemetry data is portable. The experience built on top of it usually is not.</p>
     <dl class="defs">
       <dt>Portable</dt>
       <dd>Instrumentation, data format, attribute names</dd>
