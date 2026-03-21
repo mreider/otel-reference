@@ -14,41 +14,26 @@
   }
 }
 
-/* download icons */
+/* download links */
 .downloads {
   position: absolute;
-  top: 1.5em;
-  right: 1.5em;
+  top: 1.8em;
+  right: 2em;
   display: flex;
-  gap: 0.8em;
+  gap: 1.2em;
 }
 
 .downloads a {
-  display: block;
-  text-align: center;
+  font: 0.7em/1 'Crimson Text', serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
+  color: #aaa;
+  transition: color 0.2s;
 }
 
-.downloads span {
-  display: block;
-  font-size: 0.65em;
-  color: #999;
-  margin-top: 0.1em;
-  letter-spacing: 0.05em;
-}
-
-.downloads img {
-  width: 40px;
-  height: auto;
-  opacity: 0.7;
-}
-
-.downloads a:hover img {
-  opacity: 1;
-}
-
-.downloads a:hover span {
-  color: #555;
+.downloads a:hover {
+  color: #444;
 }
 
 body {
